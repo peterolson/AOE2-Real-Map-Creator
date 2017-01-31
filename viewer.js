@@ -60,24 +60,35 @@ function renderData() {
                 lon = proj[1];
             cell.climate = worldData.climateAt(lat, lon);
             cell.elevation = worldData.elevationAt(lat, lon);
+            if (!cell.climate || cell.elevation <= 0) {
+                if (cell.elevation > -200) cell.climate = "w1";
+                else if (cell.elevation > -2500) cell.climate = "w2";
+                else if (cell.elevation > -3650) cell.climate = "w3";
+                else if (cell.elevation > -4500) cell.climate = "w4";
+                else cell.climate = "w5";
+            }
+        }
+    }
+    for (var i = 0; i < height; i++) {
+        for (var j = 0; j < width; j++) {
+            if (isBeachWater(map, i, j)) {
+                map[i][j].climate = "wb";
+            }
         }
     }
     for (var i = 0; i < height; i++) {
         for (var j = 0; j < width; j++) {
             var cell = map[i][j];
-            if (cell.climate && cell.elevation > 0) {
+            if (cell.climate) {
                 var color = config.climateColors[cell.climate];
-                var darkening = Math.round(Math.log(cell.elevation) * Math.sqrt(cell.elevation) / 6);
+                var elevation = cell.elevation;
+                if (elevation <= 0) {
+                    elevation = -(elevation - 1) / 5;
+                }
+                var darkening = Math.round(Math.log(elevation) * Math.sqrt(elevation) / 6);
                 cell.r = Math.max(0, color[0] - darkening);
                 cell.g = Math.max(0, color[1] - darkening);
                 cell.b = Math.max(0, color[2] - darkening);
-            }
-            else {
-                var color = config.climateColors.water;
-                var lightening = Math.round(cell.elevation / 100);
-                cell.r = Math.min(255, color[0] + lightening);
-                cell.g = Math.min(255, color[1] + lightening);
-                cell.b = Math.min(255, color[2] + lightening);
             }
         }
     }

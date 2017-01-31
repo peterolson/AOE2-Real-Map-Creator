@@ -28,7 +28,7 @@ var saveMap = (function () {
             for (var j = 0; j < size; j++) {
                 var tile = map[i][j];
                 var terrain = 1;
-                if (tile.climate && tile.elevation > 0) {
+                if (tile.climate) {
                     var imgs = holdersDict[tile.climate].getElementsByTagName("img");
                     var img = imgs[Math.random() * imgs.length | 0];
                     terrain = img.index;

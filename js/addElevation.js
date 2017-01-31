@@ -111,13 +111,4 @@ function addElevation(map, maxElevation) {
             }
         }
     } while (!allHolesFilled);
-    
-
-    console.log(map.map(function (row) {
-        return row.map(function (tile) {
-            if (tile.elevation <= 0) return "w";
-            return tile.level;
-        }).join("");
-    }).join("\n"));
-
 }

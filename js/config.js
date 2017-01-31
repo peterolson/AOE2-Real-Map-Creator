@@ -31,7 +31,12 @@ var config = {
         Dwd: [89, 114, 94],
         EF: [237, 237, 236],
         ET: [162, 152, 154],
-        water: [121, 147, 200]
+        wb: [141, 167, 230],
+        w1: [121, 147, 200],
+        w2: [101, 127, 180],
+        w3: [81, 107, 160],
+        w4: [61, 87, 140],
+        w5: [41, 67, 120]
     },
     climateDescriptions: {
         Af: "Tropical (rainforest)|Colombia, Central Africa, Indonesia",
@@ -65,6 +70,12 @@ var config = {
         Dwd: "Cold (dry winter, very cold summer)|Yakutia, Chukotka",
         EF: "Polar frost (always freezing)|Antarctica, Greenland",
         ET: "Tundra (1 month above freezing)|Northeast Canada, Southern Argentina, Tibet",
+        wb: "Water (beach)|",
+        w1: "Water (<200 meters)|",
+        w2: "Water (200-2500 meters)|",
+        w3: "Water (2500-3650 meters)|",
+        w4: "Water (3650-4500 meters)|",
+        w5: "Water (>4500 meters)|"
     },
     terrainOrder: [
         0, 12, 9, 60, 44, 62, // Grasses
@@ -109,7 +120,13 @@ var config = {
         Dwc: [32, 34, 12],
         Dwd: [32, 32, 34],
         EF: [35],
-        ET: [32]
+        ET: [32],
+        wb: [1],
+        w1: [1, 1, 23],
+        w2: [1, 23, 23],
+        w3: [23],
+        w4: [23, 22],
+        w5: [22]
     },
     mapSize: 200
 };

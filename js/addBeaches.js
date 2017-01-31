@@ -48,3 +48,15 @@ function addBeaches(map) {
         }
     }
 }
+
+function isBeachWater(map, x, y) {
+    var size = map.length;
+    if (map[x][y].climate[0] !== "w") return false;
+    for (var i = Math.max(x - 1, 0); i < Math.min(x + 2, size); i++) {
+        for (var j = Math.max(y - 1, 0); j < Math.min(y + 2, size); j++) {
+            var tile = map[i][j];
+            if (tile.climate[0] !== "w") return true;
+        }
+    }
+    return false;
+}
