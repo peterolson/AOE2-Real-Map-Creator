@@ -28,7 +28,6 @@ html, body {
 
 #climatePanel {
     float: left;
-    width: calc(100% - 270px);
     height: calc(100% - 220px);
     overflow: auto;
 }
@@ -69,4 +68,8 @@ html, body {
 
 img, canvas {
     user-select: none;
+}
+
+input[type=range] {
+    width: 130px;
 }
