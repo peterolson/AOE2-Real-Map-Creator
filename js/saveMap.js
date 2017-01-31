@@ -37,7 +37,7 @@ var saveMap = (function () {
             }
         }
         addBeaches(map);
-        addElevation(map, 10);
+        addElevation(map, 9);
     }
 
     function generateMap(map) {

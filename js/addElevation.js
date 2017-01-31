@@ -13,19 +13,27 @@ function addElevation(map, maxElevation) {
     elevations.sort(function (a, b) {
         return a - b;
     });
+    var outlierCutoff = 0.95;
+    elevations = elevations.slice(0, elevations.length * outlierCutoff | 0);
     var lowElevation = elevations[0],
         highElevation = elevations[elevations.length - 1];
     
     function getLevel(elevation) {
-        return maxElevation * (elevation - lowElevation) / (highElevation - lowElevation) | 0;
+        var level = maxElevation * (elevation - lowElevation) / (highElevation - lowElevation) | 0;
+        return Math.min(level, maxElevation);
     }
 
     function canRaise(x, y, level) {
+        var avgLevel = 0, count = 0;
         for (var i = x; i < x + 2 && i < size; i++) {
             for (var j = y; j < y + 2 && j < size; j++) {
                 if (map[i][j].maxLevel < level) return false;
+                avgLevel += getLevel(map[i][j].elevation);
+                count++;
             }
         }
+        avgLevel /= count;
+        if (avgLevel < level) return false;
         for (var i = Math.max(0, x - 1); i < Math.min(x + 3, size); i++) {
             for (var j = Math.max(0, y - 1); j < Math.min(y + 3, size); j++) {
                 var difference = level - map[i][j].level;
@@ -72,7 +80,7 @@ function addElevation(map, maxElevation) {
             tile.level = 0;
             tile.maxLevel = 0;
             if (tile.waterDistance > 0) {
-                tile.maxLevel = Math.max(0, Math.min(getLevel(tile.elevation), tile.waterDistance - 2));
+                tile.maxLevel = Math.max(0, tile.waterDistance - 2);
             }
         }
     }

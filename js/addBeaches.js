@@ -1,35 +1,43 @@
 function addBeaches(map) {
     var size = map.length;
-    function getDistanceFromWater() {
-        function getDistance(x, y) {
-            if (terrains[map[x][y].terrain].type !== "land") return 0;
-            if (x > 0 && !isFinite(map[x - 1][y].waterDistance)) return Infinity;
-            if (y > 0 && !isFinite(map[x][y - 1].waterDistance)) return Infinity;
-            var r = 1;
-            while (r < size) {
-                var iStart = Math.max(x - r, 0),
-                    iEnd = Math.min(x + r, size - 1),
-                    jStart = Math.max(y - r, 0),
-                    jEnd = Math.min(y + r, size - 1);
-                for (var i = iStart; i <= iEnd; i++) {
-                    for (var j = jStart; j <= jEnd; j++) {
-                        var tile = map[i][j];
-                        if (terrains[tile.terrain].type !== "land") {
-                            return r;
-                        }
-                    }
-                }
-                r++;
-            }
-            return Infinity;
-        }
-        for (var i = 0; i < size; i++) {
-            for (var j = 0; j < size; j++) {
-                map[i][j].waterDistance = getDistance(i, j);
+
+    var queue = [];
+
+    for (var i = 0; i < size; i++) {
+        for (var j = 0; j < size; j++) {
+            var tile = map[i][j];
+            tile.waterDistance = undefined;
+            if (terrains[tile.terrain].type !== "land") {
+                tile.waterDistance = 0;
+                queue.push([i, j, 0]);
             }
         }
     }
-    getDistanceFromWater();
+
+    if (!queue.length) {
+        for (var i = 0; i < size; i++) {
+            for (var j = 0; j < size; j++) {
+                var tile = map[i][j];
+                tile.waterDistance = Infinity;
+            }
+        }
+    }
+
+    while (queue.length) {
+        var coords = queue.shift(),
+            x = coords[0],
+            y = coords[1],
+            distance = coords[2];
+        for (var i = Math.max(x - 1, 0); i < Math.min(x + 2, size); i++) {
+            for (var j = Math.max(y - 1, 0); j < Math.min(y + 2, size); j++) {
+                var tile = map[i][j];
+                if (tile.waterDistance === undefined) {
+                    tile.waterDistance = distance + 1;
+                    queue.push([i, j, distance + 1]);
+                }
+            }
+        }
+    }
 
     for (var i = 0; i < size; i++) {
         for (var j = 0; j < size; j++) {
