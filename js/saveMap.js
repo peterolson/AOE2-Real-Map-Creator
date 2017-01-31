@@ -90,7 +90,9 @@ var saveMap = (function () {
                 a.href = url;
                 a.download = "real_world_scenario." + format.extension;
                 a.click();
-                window.URL.revokeObjectURL(url);
+                setTimeout(function () {
+                    window.URL.revokeObjectURL(url);
+                }, 100);
             }
         }
         xhr.send();
