@@ -77,7 +77,7 @@ function getData(fn) {
 
     readFile('data/Koeppen-Geiger-ASCII.txt', function (text) {
         text.split("\n").slice(0, -1).forEach(function (line) {
-            var parts = line.split(/\s+/).slice(1, -1);
+            var parts = line.split(/\s+/).slice(1);
             var lat = parts[0],
                 lon = parts[1],
                 climate = parts[2];
