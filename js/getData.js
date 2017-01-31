@@ -89,7 +89,8 @@ function getData(fn) {
         if (loaded > 1) finished(fn);
     });
 
-    readFile('data/elevation.tsv', function (text) {
+    readFile('data/elevation_downsample.tsv', function (text) {
+        text = pako.inflate(text, { to: "string" });
         elevations = text.split("\n").slice(0, -1).map(function (line) {
             return line.split("\t");
         });
