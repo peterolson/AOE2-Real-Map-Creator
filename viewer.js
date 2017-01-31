@@ -100,7 +100,7 @@ slctProjection.onchange = function () {
     renderData();
 }
 
-canvas.onmousewheel = function (e) {
+canvas.onwheel = function (e) {
     var zoom = prjSettings.zoom;
     if (e.deltaY) {
         if (e.deltaY > 0) {
