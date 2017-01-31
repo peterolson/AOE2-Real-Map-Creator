@@ -30,7 +30,11 @@
                 <table>
                 <tr><td>Flip horizontal</td><td><input type="checkbox" id="chkFlipHorizontal"></td></tr>
                 <tr><td>Flip vertical</td><td><input type="checkbox" id="chkFlipVertical"></td></tr>
-                <tr><td>Data set</td><td><select id="dataset">
+            </table>
+            <hr>
+            <table>
+                <tr><td>Max elevation</td><td><input type="range" id="sldMaxElevation" min="0" max="25" value="6" step="1"></td><td><span id="maxElevationText">6</span></td></tr>
+                <tr><td>Data set</td><td colspan="2"><select id="dataset">
                     <option value="original">Original</option>
                     <option value="hd">HD Expansions</option>
                 </select></td></tr>

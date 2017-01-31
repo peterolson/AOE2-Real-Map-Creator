@@ -56,21 +56,26 @@ function addElevation(map, maxElevation) {
         if (x > 0 && x < size - 1) {
             if (map[x + 1][y].level > level && map[x - 1][y].level > level) {
                 map[x][y].level = map[x + 1][y].level;
+                return true;
             }
         }
         if (y > 0 && y < size - 1) {
             if (map[x][y + 1].level > level && map[x][y - 1].level > level) {
                 map[x][y].level = map[x][y + 1].level;
+                return true;
             }
         }
         if (x > 0 && y > 0 && x < size - 1 && y < size - 1) {
             if (map[x + 1][y + 1].level > level && map[x - 1][y - 1].level > level) {
                 map[x][y].level = map[x + 1][y + 1].level;
+                return true;
             }
             if (map[x - 1][y + 1].level > level && map[x + 1][y - 1].level > level) {
                 map[x][y].level = map[x - 1][y + 1].level;
+                return true;
             }
         }
+        return false;
     }
 
 
@@ -93,12 +98,20 @@ function addElevation(map, maxElevation) {
                 }
             }
         }
+    }
+
+    var allHolesFilled;
+    do {
+        allHolesFilled = true;
         for (var i = 0; i < size; i++) {
             for (var j = 0; j < size; j++) {
-                fillHole(i, j);
+                if (fillHole(i, j)) {
+                    allHolesFilled = false;
+                }
             }
         }
-    }
+    } while (!allHolesFilled);
+    
 
     console.log(map.map(function (row) {
         return row.map(function (tile) {

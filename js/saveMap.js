@@ -37,7 +37,7 @@ var saveMap = (function () {
             }
         }
         addBeaches(map);
-        addElevation(map, 9);
+        addElevation(map, +document.getElementById("sldMaxElevation").value);
     }
 
     function generateMap(map) {

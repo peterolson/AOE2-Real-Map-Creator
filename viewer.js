@@ -167,6 +167,12 @@ chkFlipVertical.onchange = function () {
     renderData();
 }
 
+var sldMaxElevation = document.getElementById("sldMaxElevation");
+sldMaxElevation.onchange = function () {
+    var value = +this.value;
+    document.getElementById("maxElevationText").innerText = this.value;
+}
+
 var slctDataset = document.getElementById("dataset");
 slctDataset.onchange = terrains.refreshTerrainPanel;
 
