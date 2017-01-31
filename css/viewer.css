@@ -1,0 +1,72 @@
+html, body {
+    margin:0;
+    padding:0;
+    height:100%;
+}
+
+#mapContainer {
+    width: 260px;
+    height: 260px;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+#map {
+    display: none;
+}
+
+#mapPanel {
+    float: left;
+    width: 260px;
+    padding: 5px;
+}
+
+#terrainPanel {
+    float: left;
+}
+
+#climatePanel {
+    float: left;
+    width: calc(100% - 270px);
+    height: calc(100% - 220px);
+    overflow: auto;
+}
+
+#climatePanel table {
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+#climatePanel td {
+    border: 1px solid black;
+    padding: 2px;
+    width: 220px;
+    vertical-align: top;
+}
+
+#climatePanel .title {
+    text-align: center;
+    position: relative;
+}
+
+#climatePanel .title .clear {
+    position: absolute;
+    display: block;
+    right: 0;
+    top: 0;
+}
+
+#climatePanel .holder {
+    min-height: 56px;
+    text-align: center;
+    padding: 2px;
+    position: relative;
+}
+
+#climatePanel .holder img {
+    padding: 1px;
+}
+
+img, canvas {
+    user-select: none;
+}

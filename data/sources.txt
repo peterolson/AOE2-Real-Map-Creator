@@ -1,0 +1,5 @@
+elevation
+http://iridl.ldeo.columbia.edu/SOURCES/.WORLDBATH/.bath/
+
+climate
+http://koeppen-geiger.vu-wien.ac.at/present.htm

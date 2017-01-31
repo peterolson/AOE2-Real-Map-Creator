@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+    <head>
+        <title>AOE II Map Generator</title>
+        <link rel="stylesheet" href="css/viewer.css" />
+    </head>
+    <body>
+        <div id="mapPanel">
+            <div id="mapContainer">
+                <div id="waitElevation">Loading elevation data... <img src="img/wait.gif"></div>
+                <div id="waitClimate">Loading climate data... <img src="img/wait.gif"></div>
+                <canvas id="map"></canvas>
+            </div>
+            <div id="mapControls">
+                <table>
+                    <tr><td>Projection</td><td><select id="slctProjection">
+                    <option value="rectangular">Equirectangular</option>
+                    <option value="mercator">Mercator</option>
+                    <option value="cylindrical">Cylindrical Equidistant</option>
+                    <option value="eckertIV">Eckert IV</option>
+                    <option value="orthographic">Orthographic</option>
+                    <option value="stereographic">Stereographic</option>
+                </select></td></tr>
+                </table>
+                <table>
+                    <tr><td>Size</td><td><input type="range" id="sldSize" min="120" max="255" step="1" value="200"></td><td><span id="sizeText">200×200</span></td></tr>
+                    <tr><td>Stretch</td><td><input type="range" id="sldStretch" min="0.25" max="4" step="0.125" value="1"></td><td><span id="stretchText">1.00</span></td></tr>
+                    <tr><td>Rotate</td><td><input type="range" id="sldRotate" min="-180" max="180" value="0" step="5"></td><td><span id="rotateText">0</span>°</td></tr>
+                </table>
+                <table>
+                <tr><td>Flip horizontal</td><td><input type="checkbox" id="chkFlipHorizontal"></td></tr>
+                <tr><td>Flip vertical</td><td><input type="checkbox" id="chkFlipVertical"></td></tr>
+                <tr><td>Data set</td><td><select id="dataset">
+                    <option value="original">Original</option>
+                    <option value="hd">HD Expansions</option>
+                </select></td></tr>
+                <tr><td><button id="btnSave">Save map</button></td></tr>
+                </table>
+            </div>
+        </div>
+        <div id="terrainPanel">
+        </div>
+        <div id="climatePanel">
+            
+        </div>
+        <script src="js/config.js"></script>
+        <script src="js/projections.js"></script>
+        <script src="js/getData.js"></script>
+        <script src="js/terrain.js"></script>
+        <script src="js/climate.js"></script>
+        <script src="js/throttle.js"></script>
+        <script src="js/lib/pako.min.js"></script>
+        <script src="js/addBeaches.js"></script>
+        <script src="js/addElevation.js"></script>
+        <script src="js/saveMap.js"></script>
+        <script src="viewer.js"></script>
+    </body>
+</html>
